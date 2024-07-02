@@ -9,17 +9,19 @@ const AllocationForm = (props) => {
     const [action, setAction] = useState('');
 
     const submitEvent = () => {
+        const parsedCost = parseInt(cost, 10);
 
-        if (cost > remaining) {
-            alert("The value cannot exceed remaining funds  £" + remaining);
+        if (parsedCost > remaining) {
+            alert("The value cannot exceed remaining funds " + currency + remaining);
             setCost("");
             return;
         }
 
         const expense = {
             name: name,
-            cost: parseInt(cost),
+            cost: parsedCost,
         };
+
         if (action === "Reduce") {
             dispatch({
                 type: 'RED_EXPENSE',
@@ -36,14 +38,13 @@ const AllocationForm = (props) => {
     return (
         <div>
             <div className='row'>
-
                 <div className="input-group mb-3" style={{ marginLeft: '2rem' }}>
                     <div className="input-group-prepend">
                         <label className="input-group-text" htmlFor="inputGroupSelect01">Department</label>
                     </div>
                     <select className="custom-select" id="inputGroupSelect01" onChange={(event) => setName(event.target.value)}>
                         <option defaultValue>Choose...</option>
-                        <option value="Marketing" name="marketing"> Marketing</option>
+                        <option value="Marketing" name="marketing">Marketing</option>
                         <option value="Sales" name="sales">Sales</option>
                         <option value="Finance" name="finance">Finance</option>
                         <option value="HR" name="hr">HR</option>
@@ -66,15 +67,14 @@ const AllocationForm = (props) => {
                         id='cost'
                         value={cost}
                         style={{ size: 10 }}
-                        onChange={(event) => setCost(event.target.value)}>
-                    </input>
+                        onChange={(event) => setCost(event.target.value)}
+                    ></input>
 
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
                         Save
                     </button>
                 </div>
             </div>
-
         </div>
     );
 };

@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.btn {
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.btn-increase {
+    background-color: green
+}
+
+.btn-decrease {
+    background-color: red
+}
